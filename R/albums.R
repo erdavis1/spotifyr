@@ -45,9 +45,7 @@ get_albums <- function(albums = character(), access_token = get_spotify_access_t
                         total_tracks = content$albums[[.x]][['total_tracks']],
                         type = content$albums[[.x]][['type']],
                         uri = content$albums[[.x]][['uri']],
-                        copyright_text = unlist(map(content$albums[[.x]][["copyrights"]], "text")),
                         available_markets = list(content$albums[[.x]][['available_markets']]),
-                        copyright_type = unlist(map(content$albums[[.x]][["copyrights"]], "type")),
                         genres = list(unlist(ifelse(length(content$albums[[.x]][["genres"]]) == 0, "", content$albums[[.x]][["genres"]])))),
                tracks = list(content$albums[[.x]][["tracks"]][["items"]])) %>%
             mutate(copyright_type = paste0("copyright_type_", copyright_type)) %>%
